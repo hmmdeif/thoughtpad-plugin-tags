@@ -42,6 +42,18 @@ describe("tags plugin", function () {
         })();
     });
 
+    it("should create alternative name if the tag page name already exists", function () {
+        var res = false;
+        thoughtpad = man.registerPlugins([app]);
+        thoughtpad.config = config;
+
+        co(function *() {
+            yield thoughtpad.notify("html-precompile-all-request");
+            thoughtpad.config.pages['tag-tag3'];
+            thoughtpad.config.pages.tag3.customField.should.eql('foo');
+        })();
+    });
+
     it("should create the tag pages with correct config", function () {
         var res = false;
         thoughtpad = man.registerPlugins([app]);
@@ -51,7 +63,7 @@ describe("tags plugin", function () {
             yield thoughtpad.notify("html-precompile-all-request");
             thoughtpad.config.pages.tag1.should.have.property('layout', 'layout1');
             thoughtpad.config.pages.tag2.should.have.property('url', 'something');
-            thoughtpad.config.pages.tag3.should.have.property('sortBy', 'sorted');
+            thoughtpad.config.pages['tag-tag3'].should.have.property('sortBy', 'sorted');
         })();
     });
 
@@ -63,7 +75,7 @@ describe("tags plugin", function () {
         co(function *() {
             yield thoughtpad.notify("html-precompile-all-request");
             thoughtpad.config.pages.tag2.pages.should.eql(['home', 'anotherpage']);
-            thoughtpad.config.pages.tag4.pages.should.eql(['anotherpage']);
+            thoughtpad.config.pages['tag-4'].pages.should.eql(['anotherpage']);
         })();
     });
 });

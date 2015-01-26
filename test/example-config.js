@@ -14,8 +14,12 @@ module.exports = {
             tags: [
                 'tag2',
                 'tag3',
-                'tag4'
+                'tag 4'
             ]
+        },
+        tag3: {
+            url: 'test.html',
+            customField: 'foo'
         },
         tags: {
             tagLayout: 'layout1',

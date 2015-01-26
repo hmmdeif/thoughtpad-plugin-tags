@@ -5,7 +5,8 @@ var init = function (thoughtpad) {
 addTags = function *(obj) {
     var config = obj.thoughtpad.config,
         i,
-        len;
+        len,
+        tagName;
 
     // Only add tags if the tag page is in the config
     if (config.pages.tags) {
@@ -24,20 +25,28 @@ addTags = function *(obj) {
                 len = config.pages[page].tags.length;
 
                 for (i; i < len; i++) {
-                    if (config.pages.tags.pages.indexOf(config.pages[page].tags[i]) === -1) {
-                        config.pages.tags.pages.push(config.pages[page].tags[i]);
+                    tagName = config.pages[page].tags[i].replace(' ', '-');
 
-                        config.pages[config.pages[page].tags[i]] = {
+                    // Make the page unique if a tag is named the same as a user page (simple)
+                    if (config.pages[tagName] && !config.pages[tagName].tagPage) {
+                        tagName = 'tag-' + config.pages[page].tags[i];
+                    }
+
+                    if (config.pages.tags.pages.indexOf(tagName) === -1) {
+                        config.pages.tags.pages.push(tagName);
+
+                        config.pages[tagName] = {
                             layout: config.pages.tags.tagLayout,
-                            title: config.pages[page].tags[i],
+                            title: tagName,
                             sortBy: config.pages.tags.sortBy,
                             jsbundle: config.pages.tags.jsbundle,
                             cssbundle: config.pages.tags.cssbundle,
                             url: config.pages.tags.tagUrl,
-                            pages: [page]
+                            pages: [page],
+                            tagPage: true
                         };
-                    } else if (config.pages[config.pages[page].tags[i]].pages.indexOf(page) === -1) {
-                        config.pages[config.pages[page].tags[i]].pages.push(page);
+                    } else if (config.pages[tagName].pages.indexOf(page) === -1) {
+                        config.pages[tagName].pages.push(page);
                     }
                 }
             }
