@@ -37,7 +37,7 @@ addTags = function *(obj) {
 
                         config.pages[tagName] = {
                             layout: config.pages.tags.tagLayout,
-                            title: tagName,
+                            title: 'Tag: ' + tagName.replace('tag-', ''),
                             sortBy: config.pages.tags.sortBy,
                             jsbundle: config.pages.tags.jsbundle,
                             cssbundle: config.pages.tags.cssbundle,
