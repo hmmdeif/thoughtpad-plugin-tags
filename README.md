@@ -14,6 +14,7 @@ The plugin should be loaded using the [thoughtpad-plugin-manager](https://github
 var man = require('thoughtpad-plugin-manager'),
     tags = require('thoughtpad-plugin-tags');
 
+var thoughtpad = man.registerPlugins([tags]);
 yield thoughtpad.notify("html-precompile-all-request");
 ```
 
