@@ -7,6 +7,20 @@ addTags = function *(obj) {
         i,
         len,
         tagName;
+        
+    if (!config.func) {
+        config.func = {};
+    }
+
+    if (!config.func.getTags) {
+        config.func.getTags = function (pages) {
+        	return pages.tags.pages.sort(function (a, b) {
+        		if (a.replace('tag-', '').toLowerCase() > b.replace('tag-', '').toLowerCase()) return 1;
+        		if (a.replace('tag-', '').toLowerCase() < b.replace('tag-', '').toLowerCase()) return -1;
+        		return 0;
+        	});
+        }
+    }
 
     // Only add tags if the tag page is in the config
     if (config.pages.tags) {
