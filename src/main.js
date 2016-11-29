@@ -57,7 +57,8 @@ addTags = function *(obj) {
                             cssbundle: config.pages.tags.cssbundle,
                             url: config.pages.tags.tagUrl,
                             pages: [page],
-                            tagPage: true
+                            tagPage: true,
+                            publish: true
                         };
                     } else if (config.pages[tagName].pages.indexOf(page) === -1) {
                         config.pages[tagName].pages.push(page);
