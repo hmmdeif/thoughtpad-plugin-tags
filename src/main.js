@@ -34,7 +34,7 @@ addTags = function *(obj) {
 
         // Loop through the pages and add the tag pages
         for (page in config.pages) {
-            if (config.pages[page].tags) {
+            if (config.pages[page].tags && config.pages[page].publish) {
                 i = 0;
                 len = config.pages[page].tags.length;
 

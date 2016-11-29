@@ -1,6 +1,6 @@
 {
   "name": "thoughtpad-plugin-tags",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Thoughtpad plugin for generating tags for pages",
   "engines": {
     "node": ">= 0.12.0",
