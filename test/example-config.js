@@ -3,6 +3,7 @@ module.exports = {
     pages: {
         home: {
             url: 'home.html',
+            publish: true,
             tags: [
                 'tag1',
                 'tag2',
@@ -11,6 +12,7 @@ module.exports = {
         },
         anotherpage: {
             url: 'test.html',
+            publish: true,
             tags: [
                 'tag2',
                 'tag3',
@@ -19,6 +21,7 @@ module.exports = {
         },
         tag3: {
             url: 'test.html',
+            publish: true,
             customField: 'foo'
         },
         tags: {
